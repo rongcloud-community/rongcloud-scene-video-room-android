@@ -1,0 +1,3 @@
+[submodule "scene-common"]
+	path = scene-common
+	url = git@github.com:rongcloud-community/rongcloud-scene-common-android.git
