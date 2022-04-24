@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+}
+
+
+// 从local.properties中读取相关的key
+Properties properties = new Properties()
+properties.load(project.file('local.properties').newDataInputStream())
+
+def UM_APP_KEY = properties.getProperty("UM_APP_KEY")
+def BUGLY_ID = properties.getProperty("BUGLY_ID")
+def MH_APP_KEY = properties.getProperty("MH_APP_KEY")
+def BUSINESS_TOKEN = properties.getProperty("BUSINESS_TOKEN")
+def HIFIVE_APPID = properties.getProperty("HIFIVE_APPID")
+def HIFIVE_SERVERCODE = properties.getProperty("HIFIVE_SERVERCODE")
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "cn.rongcloud.voiceroomdemo.dev"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+    }
+
+    buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            buildConfigField("String", "UM_APP_KEY", UM_APP_KEY)
+            buildConfigField("String", "BUGLY_ID", BUGLY_ID)
+            buildConfigField("String", "MH_APP_KEY", MH_APP_KEY)
+            buildConfigField("String", "BUSINESS_TOKEN", BUSINESS_TOKEN)
+            buildConfigField("String", "APP_KEY", "\"pvxdm17jpw7ar\"")
+            buildConfigField("String", "BASE_SERVER_ADDRES", "\"https://rcrtc-api.rongcloud.net/\"")
+            buildConfigField("Boolean", "INTERIAL", "false")// 区分国内/国际 国内环境不显示UI 选择地区
+            manifestPlaceholders = [
+                    // hifive音乐服务的 appid和servercode
+                    HIFIVE_APPID     : HIFIVE_APPID,
+                    HIFIVE_SERVERCODE: HIFIVE_SERVERCODE
+            ]
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(includes: ['*.aar'], dir: 'libs')
+    implementation android_ui.appcompat
+    implementation android_ui.material
+    // 语聊房
+    implementation project(":live")
+    // 用户登录模块
+    implementation project(rcLocalLib.profile)
+
+    annotationProcessor "com.alibaba:arouter-compiler:$arouter"
+
+}

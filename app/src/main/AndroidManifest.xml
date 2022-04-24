@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.rongcloud.rongcloud_scene_common_android">
+
+    <application
+        android:name=".RCApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/httpsupport"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Rongcloudscenecommonandroid"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="cn.rongcloud.profile.LauncherActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MainActivity" />
+        <!-- HIFIVE 音乐配置信息 -->
+        <meta-data
+            android:name="HIFIVE_APPID"
+            android:value="${HIFIVE_APPID}" />
+        <meta-data
+            android:name="HIFIVE_SERVERCODE"
+            android:value="${HIFIVE_SERVERCODE}" />
+    </application>
+
+</manifest>
