@@ -10,7 +10,7 @@
         android:networkSecurityConfig="@xml/httpsupport"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Rongcloudscenecommonandroid"
+        android:theme="@style/BasisTheme"
         android:usesCleartextTraffic="true">
         <activity
             android:name="cn.rongcloud.profile.LauncherActivity"
