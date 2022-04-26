@@ -5,7 +5,7 @@ plugins {
 
 // 从local.properties中读取相关的key
 Properties properties = new Properties()
-properties.load(project.file('local.properties').newDataInputStream())
+properties.load(rootProject.file('local.properties').newDataInputStream())
 
 def UM_APP_KEY = properties.getProperty("UM_APP_KEY")
 def BUGLY_ID = properties.getProperty("BUGLY_ID")
@@ -74,7 +74,7 @@ dependencies {
     implementation android_ui.appcompat
     implementation android_ui.material
     // 语聊房
-    implementation project(":live")
+    implementation project(rcModules.scene_video)
     // 用户登录模块
     implementation project(rcLocalLib.profile)
 

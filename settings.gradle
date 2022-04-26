@@ -1,4 +1,4 @@
 rootProject.name = "rongcloud-scene-video-room-android"
 include ':app'
-include ':live'
+include ':video'
 include ':scene-common:common',':scene-common:middle:config',':scene-common:middle:music',':scene-common:middle:pk',':scene-common:middle:profile',':scene-common:middle:roomkit',':scene-common:middle:mhui'

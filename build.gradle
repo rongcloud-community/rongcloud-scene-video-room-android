@@ -106,4 +106,9 @@ ext {
             // 房间通用ui模块
             roomkit: ":scene-common:middle:roomkit",
     ]
+
+    rcModules = [
+            // 视频直播
+            scene_video: ":video"
+    ]
 }
